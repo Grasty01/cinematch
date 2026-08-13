@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CinéMatch — Catalogue de films</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="logo">Ciné<span>Match</span></div>
+      <div class="search-box">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Rechercher un film..."
+        />
+      </div>
+    </nav>
+
+    <!-- Hero : affiche les films tendances -->
+    <section class="hero" id="hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Tendance cette semaine</div>
+        <h1 id="hero-title">Chargement...</h1>
+        <div class="hero-meta">
+          <div class="rating-badge" id="hero-rating">—</div>
+          <span class="hero-genre" id="hero-info"></span>
+        </div>
+        <p id="hero-overview"></p>
+        <button class="btn-play" id="hero-details-btn">
+          ▶ Voir les détails
+        </button>
+        <button class="btn-ghost" id="hero-fav-btn">♡ Favoris</button>
+      </div>
+    </section>
+
+    <div class="tabs" id="tabs">
+      <div class="tab active" data-tab="trending">Tendances</div>
+      <div class="tab" data-tab="popular">Populaires</div>
+      <div class="tab" data-tab="top_rated">Mieux notés</div>
+      <div class="tab" data-tab="favorites">Mes favoris</div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 id="section-title">Tendances cette semaine</h2>
+        <span class="section-sub" id="section-sub">Mis à jour aujourd'hui</span>
+      </div>
+    </section>
+
+    <!-- Chargement de la page lors de l'appel à l'api-->
+    <div class="state-box" id="loader" style="display: none">
+      <div class="spinner"></div>
+      <p>Chargement des films...</p>
+    </div>
+
+    <div class="state-box error" id="error-box" style="display: none">
+      <p>
+        ⚠️ Impossible de charger les films. Vérifie ta clé API et ta connexion.
+      </p>
+      <button class="btn-play" id="retry-btn">Réessayer</button>
+    </div>
+
+    <div class="state-box" id="empty-box" style="display: none">
+      <p>Aucun film à afficher ici pour le moment.</p>
+    </div>
+
+    <!-- Grille de films -->
+    <div class="grid" id="movies-grid"></div>
+
+    <footer>CinéMatch — Projet 2, Module JS S10 — Akieni Academy</footer>
+
+    <!-- Modale details -->
+    <div class="modal-overlay" id="modal" style="display: none">
+      <div class="modal">
+        <div class="modal-banner" id="modal-banner">
+          <button class="modal-close" id="modal-close-btn">✕</button>
+        </div>
+        <div class="modal-body">
+          <h2 id="modal-title">—</h2>
+          <div class="modal-tags" id="modal-tags"></div>
+          <p id="modal-overview"></p>
+          <div class="modal-actions">
+            <button class="btn-play" id="modal-fav-btn">
+              ♡ Ajouter aux favoris
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

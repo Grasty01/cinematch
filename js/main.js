@@ -1,21 +1,33 @@
-import { fetchTrending, fetchPopular, fetchTopRated, searchMovies } from './api.js';
-import { state } from './state.js';
-import { showLoader, showError, renderGrid, renderHero } from './ui/renderMovies.js';
-import { openModal } from './ui/renderModal.js';
+import {
+  fetchTrending,
+  fetchPopular,
+  fetchTopRated,
+  searchMovies,
+} from "./api.js";
+import "./ui/menu.js";
+import { state } from "./state.js";
+import {
+  showLoader,
+  showError,
+  renderGrid,
+  renderHero,
+} from "./ui/renderMovies.js";
+import { openModal } from "./ui/renderModal.js";
 
-const tabsContainer = document.getElementById('tabs');
-const sectionTitle = document.getElementById('section-title');
-const searchInput = document.getElementById('search-input');
-const retryBtn = document.getElementById('retry-btn');
+var tabsContainer = document.getElementById("tabs");
+var sectionTitle = document.getElementById("section-title");
+var searchInput = document.getElementById("search-input");
+var retryBtn = document.getElementById("retry-btn");
 
-const TAB_LABELS = {
-  trending: 'Tendances cette semaine',
-  popular: 'Populaires en ce moment',
-  top_rated: 'Les mieux notés',
-  favorites: 'Mes favoris',
+// Les tendances
+var TAB_LABELS = {
+  trending: "Tendances cette semaine",
+  popular: "Populaires en ce moment",
+  top_rated: "Les mieux notés",
+  favorites: "Mes favoris",
 };
 
-const TAB_FETCHERS = {
+var TAB_FETCHERS = {
   trending: fetchTrending,
   popular: fetchPopular,
   top_rated: fetchTopRated,
@@ -26,20 +38,20 @@ function handleOpenModal(movieId) {
 }
 
 function handleFavToggle() {
-  // Si on est sur l'onglet favoris, il faut re-rendre la grille immédiatement.
-  if (state.currentTab === 'favorites') {
+  // Je vérifie vérifie si on est sur l'onglet favoris
+  if (state.currentTab === "favorites") {
     refreshCurrentView();
   }
 }
 
 /**
- * Charge (ou relit depuis le state pour les favoris) et affiche l'onglet actif.
+ * Charge et affiche l'onglet actif.
  */
 async function refreshCurrentView() {
   sectionTitle.textContent = TAB_LABELS[state.currentTab];
 
-  // Onglet favoris : pas d'appel API, on lit directement le localStorage.
-  if (state.currentTab === 'favorites') {
+  // Onglet favoris : on lit directement le localStorage.
+  if (state.currentTab === "favorites") {
     state.movies = state.favorites;
     renderGrid(state.movies, handleOpenModal, handleFavToggle);
     return;
@@ -59,12 +71,15 @@ async function refreshCurrentView() {
 
 function selectTab(tabName) {
   state.currentTab = tabName;
-  state.searchTerm = '';
-  searchInput.value = '';
+  state.searchTerm = "";
+  searchInput.value = "";
 
-  document.querySelectorAll('.tab').forEach((tab) => {
-    tab.classList.toggle('active', tab.dataset.tab === tabName);
-  });
+  var tabs = document.querySelectorAll(".tab");
+  for (var i = 0; i < tabs.length; i++) {
+    var tab = tabs[i];
+    if (tab.getAttribute("data-tab") === tabName) tab.classList.add("active");
+    else tab.classList.remove("active");
+  }
 
   refreshCurrentView();
 }
@@ -72,7 +87,7 @@ function selectTab(tabName) {
 async function handleSearch(query) {
   state.searchTerm = query;
 
-  if (query.trim() === '') {
+  if (query.trim() === "") {
     refreshCurrentView();
     return;
   }
@@ -88,9 +103,7 @@ async function handleSearch(query) {
   }
 }
 
-/**
- * Charge les données initiales : hero (tendance n°1) + grille de tendances.
- */
+// Charge les données initiales : hero (tendance n°1) + grille de tendances.
 async function init() {
   showLoader();
   try {
@@ -108,21 +121,26 @@ async function init() {
   }
 }
 
-// --- Événements ---
-
-tabsContainer.addEventListener('click', (e) => {
-  const tab = e.target.closest('.tab');
-  if (tab) selectTab(tab.dataset.tab);
+// clic sur onglet
+tabsContainer.addEventListener("click", function (e) {
+  var el = e.target;
+  while (el && !el.classList.contains("tab")) el = el.parentNode;
+  if (el && el.getAttribute) {
+    var name = el.getAttribute("data-tab");
+    if (name) selectTab(name);
+  }
 });
 
-let searchTimeout;
-searchInput.addEventListener('input', (e) => {
+var searchTimeout;
+searchInput.addEventListener("input", function (e) {
   clearTimeout(searchTimeout);
-  const value = e.target.value;
-  searchTimeout = setTimeout(() => handleSearch(value), 350);
+  var value = e.target.value;
+  searchTimeout = setTimeout(function () {
+    handleSearch(value);
+  }, 350);
 });
 
-retryBtn.addEventListener('click', () => {
+retryBtn.addEventListener("click", function () {
   if (state.searchTerm) {
     handleSearch(state.searchTerm);
   } else {

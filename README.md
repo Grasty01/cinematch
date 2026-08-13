@@ -11,15 +11,18 @@ Projet réalisé dans le cadre du module JS S10 — Akieni Academy.
 ## Fonctionnalités
 
 ### Fondamentaux
+
 - Récupération des films tendance/populaires via l'API TMDB
 - Grille responsive (CSS Grid) affichant affiche, titre, date de sortie et note moyenne
 - Indicateur de chargement pendant l'appel réseau, message d'erreur en cas d'échec
 
 ### Interactivité
+
 - Barre de recherche interrogeant l'endpoint `search/movie`, mise à jour de l'affichage en direct
 - Badge de note coloré dynamiquement selon le score : vert (> 7), orange (5 à 7), rouge (< 5)
 
 ### Bonus
+
 - Modale de détails au clic sur une carte : synopsis complet et genres, sans rechargement de page
 - Favoris avec bouton "cœur", sauvegardés en `localStorage` et affichés dans un onglet dédié qui survit au rafraîchissement
 
@@ -38,10 +41,10 @@ Cette API nécessite une clé, contrairement à celle de DevShop.
 3. Renseigne-la dans `js/config.js` :
 
 ```js
-export const TMDB_API_KEY = "TA_CLE_ICI";
+export const TMDB_API_KEY = "b9ad97a8cff91880f97b27153258ac06";
 ```
 
-⚠️ Ne commite jamais ta vraie clé API sur un repo public. Ajoute `js/config.js` à ton `.gitignore` et fournis un `js/config.example.js` à la place.
+⚠️ Ne commite jamais ta vraie clé API sur un repo public. Ajoute `js/config.js` à ton `.gitignore`.
 
 ## Installation
 
@@ -81,4 +84,4 @@ cinematch/
 
 ## Auteur
 
-Grâsty — Akieni Academy
+Grâsty Ghyvet SAMBA DINAULT— Akieni Academy

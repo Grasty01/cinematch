@@ -18,12 +18,51 @@
   .hero h1 {
     font-size: 42px;
   }
-  .tabs, .section, footer {
+  .tabs,
+  .section,
+  footer {
     padding-left: 20px;
     padding-right: 20px;
   }
   .grid {
     grid-template-columns: repeat(2, 1fr);
     padding: 0 20px 60px;
+  }
+
+  /* Affiche le menu hamburger */
+  .hamburger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  /* Masquer la barre de recherche sur mobile */
+  .search-box {
+    display: none;
+  }
+
+  .tabs.open {
+    display: flex;
+    position: fixed;
+    inset: 0 0 auto 0;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg);
+    flex-direction: column;
+    padding: 20px;
+    gap: 12px;
+    z-index: 200;
+    overflow-y: auto;
+  }
+
+  .tabs.open .tab {
+    padding: 14px 16px;
+    font-size: 16px;
   }
 }

@@ -20,6 +20,14 @@
     <!-- Navigation -->
     <nav class="nav">
       <div class="logo">Ciné<span>Match</span></div>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
       <div class="search-box">
         <input
           type="text"
@@ -60,7 +68,7 @@
       </div>
     </section>
 
-    <!-- Chargement de la page lors de l'appel à l'api-->
+    <!-- Chargement de la page en attendantbla réponse de l'API-->
     <div class="state-box" id="loader" style="display: none">
       <div class="spinner"></div>
       <p>Chargement des films...</p>
@@ -80,7 +88,7 @@
     <!-- Grille de films -->
     <div class="grid" id="movies-grid"></div>
 
-    <footer>CinéMatch — Projet 2, Module JS S10 — Akieni Academy</footer>
+    <footer>CinéMatch — Copyright - Grâsty Ghyvet SAMBA DINAULT</footer>
 
     <!-- Modale details -->
     <div class="modal-overlay" id="modal" style="display: none">

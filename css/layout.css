@@ -1,4 +1,4 @@
-/* NAVIGATION */
+/* Navifation */
 .nav {
   display: flex;
   align-items: center;
@@ -10,7 +10,7 @@
   background: linear-gradient(to bottom, var(--bg) 70%, transparent);
 }
 
-/* HERO */
+/* Héro section */
 .hero {
   position: relative;
   min-height: 440px;
@@ -35,7 +35,6 @@
   margin-bottom: 24px;
 }
 
-/* ONGLETS */
 .tabs {
   display: flex;
   gap: 10px;
@@ -43,7 +42,6 @@
   flex-wrap: wrap;
 }
 
-/* SECTIONS */
 .section {
   padding: 36px 40px 8px;
 }
@@ -55,7 +53,6 @@
   margin-bottom: 6px;
 }
 
-/* ÉTATS */
 .state-box {
   text-align: center;
   padding: 60px 20px;
@@ -65,7 +62,7 @@
   color: var(--red);
 }
 
-/* GRILLE FILMS */
+/* Grille de films */
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -78,10 +75,10 @@ footer {
   text-align: center;
   color: var(--grey);
   font-size: 12px;
-  border-top: 1px solid #22252E;
+  border-top: 1px solid #22252e;
 }
 
-/* MODALE */
+/* Mon modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -100,7 +97,7 @@ footer {
   width: 100%;
   max-height: 88vh;
   overflow-y: auto;
-  border: 1px solid #2C2F3A;
+  border: 1px solid #2c2f3a;
 }
 
 .modal-banner {

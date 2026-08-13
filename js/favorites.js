@@ -1,16 +1,21 @@
-import { state, persistFavorites } from './state.js';
+import { state, persistFavorites } from "./state.js";
 
+// Retourne vrai si l'id est dans les favoris
 export function isFavorite(id) {
-  return state.favorites.some((movie) => movie.id === id);
+  for (var i = 0; i < state.favorites.length; i++) {
+    if (state.favorites[i].id === id) return true;
+  }
+  return false;
 }
 
-/**
- * Ajoute ou retire un film des favoris selon son état actuel.
- * On ne stocke que les champs nécessaires à l'affichage de la carte.
- */
+// Ajoute ou retire un film des favoris
 export function toggleFavorite(movie) {
   if (isFavorite(movie.id)) {
-    state.favorites = state.favorites.filter((m) => m.id !== movie.id);
+    var newFav = [];
+    for (var i = 0; i < state.favorites.length; i++) {
+      if (state.favorites[i].id !== movie.id) newFav.push(state.favorites[i]);
+    }
+    state.favorites = newFav;
   } else {
     state.favorites.push({
       id: movie.id,
